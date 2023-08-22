@@ -13,7 +13,9 @@ public class Main {
             System.out.println("Argumento " + (i + 1) + ": " + args[i]);
         }
 
-
         System.out.println("Continuamos modificando el .java");
+
+        Animal perro= new Animal("perro",3);
+        System.out.println(perro.toString());
     }
 }

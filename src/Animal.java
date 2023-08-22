@@ -9,4 +9,8 @@ public class Animal {
         this.edad = edad;
     }
 
+    @Override
+    public String toString() {
+        return this.especie +" "+ this.edad;
+    }
 }
