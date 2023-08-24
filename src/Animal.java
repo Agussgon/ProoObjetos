@@ -13,4 +13,8 @@ public class Animal {
     public String toString() {
         return this.especie +" "+ this.edad;
     }
+
+    public void setEspecie(String especie) {
+        this.especie = especie;
+    }
 }

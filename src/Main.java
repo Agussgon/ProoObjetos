@@ -1,9 +1,13 @@
+import java.util.Date;
+import java.util.Scanner;
+
 public class Main {
 
 
     //
     public static void main(String[] args) {
 
+        // Argumentos ingresados desde la consola
 
         System.out.println("Veamos cuantos argumentos recibe el método main " + args.length);
         for(String argumento:args){
@@ -15,7 +19,14 @@ public class Main {
 
         System.out.println("Continuamos modificando el .java");
 
+        // Instancia de la clase Animal
+
         Animal perro= new Animal("perro",3);
         System.out.println(perro.toString());
+
+
+
+
+
     }
 }
