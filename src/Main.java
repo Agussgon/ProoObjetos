@@ -4,29 +4,22 @@ import java.util.Scanner;
 public class Main {
 
 
-    //
     public static void main(String[] args) {
 
-        // Argumentos ingresados desde la consola
+        final int CONSTANTE = 10;
 
-        System.out.println("Veamos cuantos argumentos recibe el método main " + args.length);
-        for(String argumento:args){
-            System.out.println("Argumento "+ " " +argumento + " " );
-        }
-        for (int i = 0; i < args.length; i++) {
-            System.out.println("Argumento " + (i + 1) + ": " + args[i]);
-        }
-
-        System.out.println("Continuamos modificando el .java");
-
-        // Instancia de la clase Animal
-
-        Animal perro= new Animal("perro",3);
-        System.out.println(perro.toString());
+        Producto pelota= new Producto("pelota",2000,1000,20);
+        System.out.println(pelota.gananciaObtenida());
 
 
 
+        Sube tarjetaSube= new Sube(2344554);
+
+        Sube.cambiarSaldoNegativo(-120);
+        System.out.println(tarjetaSube.consultarSaldoNegativo());
 
 
     }
+
 }
+
