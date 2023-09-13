@@ -1,3 +1,6 @@
+import SistemaEmpleados.EmpleadoLavavajilla;
+import SistemaEmpleados.EmpleadoLimpiezaGeneral;
+
 public class Main {
 
 
@@ -5,15 +8,24 @@ public class Main {
     public static void main(String[] args) {
 
 
-        System.out.println("Veamos cuantos argumentos recibe el método main " + args.length);
-        for(String argumento:args){
-            System.out.println("Argumento "+ " " +argumento + " " );
-        }
-        for (int i = 0; i < args.length; i++) {
-            System.out.println("Argumento " + (i + 1) + ": " + args[i]);
-        }
+        EmpleadoLimpiezaGeneral empleadoGeneral= new EmpleadoLimpiezaGeneral("Juan","Perez",
+                "Carrillo",23456789,150000.0,"tarde");
+
+        EmpleadoLimpiezaGeneral.actualizarValorHoraExtra(3000.0);
+
+        EmpleadoLavavajilla empleado2= new EmpleadoLavavajilla("Lucio","Perez",
+                "Carrillo",23456788,150000.0,"mañana");
+
+        EmpleadoLavavajilla.setCostoVajilla(700.0);
+
+        empleado2.mostrarInformacion();
+        empleado2.setVajillaRota(2);
+        empleado2.descontarSueldo();
+        empleado2.mostrarSueldo();
 
 
-        System.out.println("Continuamos modificando el .java");
+
+
+
     }
 }
