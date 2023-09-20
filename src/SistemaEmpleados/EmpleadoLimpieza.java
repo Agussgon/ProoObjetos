@@ -7,6 +7,8 @@ public class EmpleadoLimpieza extends Empleado {
     //ejemplo de un nuevo tipo de visualización
     protected String turno;
 
+    // agregar sueldo neto
+
 
 
     public EmpleadoLimpieza(String nombre, String apellido, String direccion, int dni, Double sueldo, String turno) {

@@ -11,6 +11,16 @@ public class Main {
         EmpleadoLimpiezaGeneral empleadoGeneral= new EmpleadoLimpiezaGeneral("Juan","Perez",
                 "Carrillo",23456789,150000.0,"tarde");
 
+
+        //
+        System.out.println( "HashCode " + empleadoGeneral.hashCode());
+
+        //
+        System.out.println( "Comparar mismo empleado con equals usando el hashcode"
+                +empleadoGeneral.equals(empleadoGeneral));
+
+
+
         EmpleadoLimpiezaGeneral.actualizarValorHoraExtra(3000.0);
 
         EmpleadoLavavajilla empleado2= new EmpleadoLavavajilla("Lucio","Perez",
