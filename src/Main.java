@@ -4,16 +4,28 @@ public class Main {
     //
     public static void main(String[] args) {
 
+    Animal animal= new Perro("perro",2,"Caniche");
 
-        System.out.println("Veamos cuantos argumentos recibe el método main " + args.length);
-        for(String argumento:args){
-            System.out.println("Argumento "+ " " +argumento + " " );
-        }
-        for (int i = 0; i < args.length; i++) {
-            System.out.println("Argumento " + (i + 1) + ": " + args[i]);
-        }
+    animal.comer("carne");
+
+    //  casteo para implementar el metodo de la interfaz
+        ((Domesticable)animal).domesticar();
+
+      // polimorfismo
+
+      animal= new Gato("gato",1,"Siames");
+
+        ((Domesticable)animal).domesticar();
+
+       // prueba defininiendo solo la interfaz
+
+       Domesticable domestico= new Perro("perro",3,"Labrador");
+       domestico.domesticar();
+        ((Perro)domestico).comer("galletitas");
 
 
-        System.out.println("Continuamos modificando el .java");
-    }
+
+
+
+}
 }

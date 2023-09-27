@@ -1,4 +1,4 @@
-public class Animal {
+public abstract class Animal {
 
 
    private String especie;
@@ -8,5 +8,7 @@ public class Animal {
         this.especie = especie;
         this.edad = edad;
     }
+
+    public abstract void comer(String comida);
 
 }
