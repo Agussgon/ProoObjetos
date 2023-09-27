@@ -13,7 +13,7 @@ public class Cliente {
 
     private List<Cuenta> cuentasAsociadas= new ArrayList<>();
 
-    public Cliente(int id, int cuit, String apellidoNombre, List<Cuenta> cuentasAsociadas) {
+    public Cliente(int id, int cuit, String apellidoNombre) {
         this.id = id;
         this.cuit = cuit;
         this.apellidoNombre = apellidoNombre;
