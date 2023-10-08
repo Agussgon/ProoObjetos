@@ -2,161 +2,110 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-
         System.out.println("Hello world!");
 
-/*
-Crear una aplicación que almacene nombres de estudiantes
-en una lista. Luego, permitir al usuario agregar nombres y
-mostrar la lista de nombres almacenados.
-
-Administrar una lista de tareas pendientes. Permitir al usuario agregar y eliminar tareas,
-así como listar
-todas las tareas pendientes.
-
- Utilizar una colección para almacenar los cursos con un código único como clave.
-Sobrescribir los métodos `hashCode()` y `equals()` para que se utilicen
-al buscar cursos por código utilizando el método `containsKey().
-*/
+        /* En clases que utilizan la interfaz map si intento guardar un elemento con la misma clave lo sobreescribe*/
 
 
-        // list tareas el orden
-        Estudiante estudiante1= new Estudiante(1,"Juan");
-        estudiante1.agregarTarea("realizar 1° T.P");
-        estudiante1.agregarTarea("realizar 1° T.P");
-        estudiante1.agregarTarea("leer cap. I");
 
-        // modificar el elemento de una determinada posición
-        estudiante1.tareas.set(1,"leer cap II");
+        Map <Integer,Container> listaContainer= new HashMap<>();
+        Scanner scanner=  new Scanner(System.in);
 
-        System.out.println("cual es la primera tarea?"+ estudiante1.tareas.get(0));
+        String continuar="si";
 
-        //podría utilizar for + tareas.size()
-        for (String tarea: estudiante1.tareas
-             ) {
+        while(continuar.equals("si")){
+            System.out.println("ingrese un número identificador");
+            Integer idIngresado= scanner.nextInt();
+            scanner.nextLine();
 
-            System.out.println( "el n° de orden es"+ estudiante1.tareas.indexOf(tarea)
-                    + "la tarea es "+tarea);
-        }
+            if(!(listaContainer.containsKey(idIngresado))){
+                Container contenedor1= new Container(idIngresado);
+                System.out.println("ingrese el país de origen");
+             // Cuando utilizas next() para leer una cadena, este método solo captura la cadena
+            // hasta el primer espacio en blanco o salto de línea, lo que significa que no captura la línea completa.
+            String paisIngresado= scanner.nextLine().trim();
 
+          /* System.out.println("probando nextBoolean");
+           Boolean peligrosoONo = scanner.nextBoolean();
 
-        System.out.println("------ ordenar listas ------");
+            scanner.nextLine();*/
+            System.out.println("responda si el material que transporta es peligroso: si o no");
+            String esPeligroso=scanner.nextLine().trim();
+            Boolean respuestaPeligroso= esPeligroso.equals("si");
+           // scanner.nextLine();
 
-        Collections.sort(estudiante1.tareas);
-        System.out.println("tareas ordenadas alfabéticamente: " + estudiante1.tareas);
-
-        // Ordenar la lista por longitud de cadenas directamente utilizando Arraylist
-        estudiante1.tareas.sort(Comparator.comparingInt(String::length));
-        System.out.println("Lista ordenada por longitud: " + estudiante1.tareas);
-
-        //con Collections  inicializando Comparator
-        Collections.sort(estudiante1.tareas, new Comparator<String>() {
-            @Override
-            public int compare(String tarea1, String tarea2) {
-                return Integer.compare(tarea1.length(),tarea2.length()) ;
+                contenedor1.setPais(paisIngresado.toLowerCase());
+                if (paisIngresado.equals("")|| paisIngresado == null  ){
+                    contenedor1.setPeligroso(true);}
+                else{ contenedor1.setPeligroso(respuestaPeligroso);}
+                // System.out.println(contenedor1);
+                listaContainer.put(idIngresado,contenedor1);
             }
-        });
-        System.out.println("Lista ordenada por longitud Collections: " + estudiante1.tareas);
+            else{ System.out.println("id registrado ");
+                scanner.nextLine();}
 
+            System.out.println("continuar la carga: si o no");
+            String continuaSiNo= scanner.nextLine().trim();
+            continuar=continuaSiNo.toLowerCase();
+        };
 
-
-        System.out.println("----- SET-------");
-
-        Curso curso1= new Curso(1,"Programación I");
-        curso1.agregarEstudiante(estudiante1);
-        curso1.agregarEstudiante(estudiante1); // "agrego" estudiante repetido
-        curso1.agregarEstudiante(new Estudiante(2,"Eva"));
-
-
-
-        // recorriendo la lista de estudiantes (set)
-        Iterator it= curso1.estudiantes.iterator();
-        while (it.hasNext()){
+        // mostrar los contenedores
+        Iterator it= listaContainer.values().iterator();
+        while(it.hasNext()){
             System.out.println(it.next());
         }
+        System.out.println("traer pais con id 1 " + listaContainer.get(1));
 
+        // contar la cantidad de contenedores peligrosos por origen desconocido o etiqueta.
+        Integer inicial= 0;
+        for (Container cont: listaContainer.values()) {
+            //
+            if( cont.getPais().equals("") || cont.peligroso.equals(true) ){
+               inicial += 1;
 
-        for (Estudiante estudiante: curso1.estudiantes
-             ) {
-            System.out.println("recorriendo set con foreach "+estudiante);
+            }
         }
+        System.out.println("Se registran un total de " + inicial + " contenedores peligrosos");
 
+        // Para ordenarlos se podría implementar el método compareTo en cada uno dentro de un for o
+        // usar Comparator de acuerdo al número que los identifica ( esto en map viene por defecto en base a la
+        //clave igualmente los ordenaremos por pais ...
 
-        curso1.buscarEstudiante(estudiante1); // implementa iterator + casteo
-
-        System.out.println("--- ordenar una coleccion de tipo set -----");
-
-        //crear una lista en la cual guardar el resultado
-        List<Estudiante> listaEstudiantesOrdenada = new ArrayList<>(curso1.estudiantes);
-
-        //Comparator<Estudiante> comparadorNombre = Comparator.comparing(Estudiante::getNombre);
-
-        //ordenarlo
-        Collections.sort(listaEstudiantesOrdenada,Comparator.comparing(Estudiante::getNombre));
-
-        // Convertir la lista ordenada a LinkedHashSet que mantiene el orden de inserción
-        Set<Estudiante> estudiantesOrdenados = new LinkedHashSet<>(listaEstudiantesOrdenada);
-
-                for (Estudiante estudiante : estudiantesOrdenados) {
-                    System.out.println(estudiante);
-                }
-
-
-        System.out.println("------ MAP-------");
-
-        Map<Integer,Curso> cursos= new HashMap<>();
-        Curso curso2= new Curso(2,"cursoII");
-        Curso curso3= new Curso(3,"cursoIII");
-        cursos.put(curso1.id,curso1);
-        cursos.put(curso3.id,curso3);
-        cursos.put(curso2.id,curso2);
-        System.out.println("contiene algun curso con clave 1 ? "+cursos.containsKey(1));
-        System.out.println("trae el curso con la clave indicada "+cursos.get(1));
-
-        // retornando claves de la coleccion
-        System.out.println("keyset "+ cursos.keySet());
-
-
-        // no guarda los elementos en el orden de inserción
-        for (Curso curso:cursos.values()
-             ) {
-            System.out.println("recorriendo map con foreach "+ curso);
-
-        }
-
-
-        System.out.println("otra forma en la cual recorremos clave y valor con el método entry");
-        for (Map.Entry<Integer, Curso> entry : cursos.entrySet()) {
-            Integer clave = entry.getKey();
-            Curso valor = entry.getValue();
-            System.out.println("Clave: " + clave + ", Valor: " + valor);
-        }
-
-
-        System.out.println("--- ordenar una coleccion de tipo map -----");
-
-        // Copiar los elementos a una lista, objeto de tipo Map.Entry
-        List<Map.Entry<Integer,Curso>> listaCursos = new ArrayList<>(cursos.entrySet());
-
-        // Ordenar la lista por valores de forma personalizada
-        Collections.sort(listaCursos, new Comparator<Map.Entry<Integer, Curso>>() {
+        List<Map.Entry<Integer,Container>> listaOrdenadaPais= new ArrayList<>(listaContainer.entrySet());
+        Collections.sort(listaOrdenadaPais, new Comparator<Map.Entry<Integer, Container>>() {
             @Override
-            public int compare(Map.Entry<Integer, Curso> o1, Map.Entry<Integer, Curso> o2) {
-                //return Integer.compare(o1.getKey(),o2.getKey());
-                return Integer.compare(o1.getValue().nombre.length(), o2.getValue().nombre.length());
-                //  return o1.getValue().getNombre().compareTo(o2.getValue().getNombre());
+            public int compare(Map.Entry<Integer, Container> o1, Map.Entry<Integer, Container> o2) {
+                return o1.getValue().getPais().compareTo(o2.getValue().getPais());
             }
         });
 
+         Map < Integer, Container > ordenadosPaises = new LinkedHashMap<>();
 
-        // Construir un nuevo Map ordenado
-        Map < Integer, Curso > mapaOrdenado = new LinkedHashMap<>();
-        // linked mantiene el orden asignado
-        for (Map.Entry<Integer,Curso> elemento : listaCursos) {
-            mapaOrdenado.put(elemento.getKey(), elemento.getValue());
+        for (Map.Entry<Integer,Container> contenedor : listaOrdenadaPais) {
+            ordenadosPaises.put(contenedor.getKey(), contenedor.getValue());
         }
 
-        System.out.println("Mapa ordenado por la longitud del nombre: " + mapaOrdenado);
+        System.out.println("contenedores ordenados por país" + ordenadosPaises);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
