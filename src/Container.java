@@ -39,10 +39,11 @@ public class Container {
         if (!(obj instanceof Container)) {
             System.out.println("ingrese datos válidos");
             return false;
-        } else {
-            return this.id == ((Container) obj).getId();
+        } else
+           // return this.id == ((Container) obj).getId();
+          return this.id.equals(((Container) obj).getId());
         }
-    }
+
 
 
 
