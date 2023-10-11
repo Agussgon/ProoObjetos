@@ -1,3 +1,6 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Main {
 
 
@@ -15,5 +18,13 @@ public class Main {
 
 
         System.out.println("Continuamos modificando el .java");
+
+
+        //format date
+        LocalDateTime fecha = LocalDateTime.now() ;
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String fechaFormateada = fecha.format(dtf);
+        System.out.println("Fecha formateada: " + fechaFormateada);
+
     }
 }
