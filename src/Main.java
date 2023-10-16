@@ -101,6 +101,15 @@ al buscar cursos por código utilizando el método `containsKey().
                     System.out.println(estudiante);
                 }
 
+        Collections.sort(listaEstudiantesOrdenada, new Comparator<Estudiante>() {
+            @Override
+            public int compare(Estudiante o1, Estudiante o2) {
+                 return o1.getId().compareTo(o2.getId());
+               //return Integer.compare(o1.getNombre().length(),o2.getNombre().length());
+
+            }
+        });
+
 
         System.out.println("------ MAP-------");
 
