@@ -97,10 +97,13 @@ public class Main {
         for (Paquete paquete : paquetesDisponibles.values()
         ) {
             paquete.mostrarInformación();
+
         }
 
 
         //scanner.close();
+        //
+
 
 
 
