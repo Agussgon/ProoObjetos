@@ -8,6 +8,7 @@ import Juego.Factory.EnemigoFactory;
 public class Juego {
 
 
+
     public Enemigo generarEnemigos(Integer nivel) throws NivelInvalidoException {
     if(nivel == null){ throw new NullPointerException();}
         else if(nivel < 5 && nivel > 0){
