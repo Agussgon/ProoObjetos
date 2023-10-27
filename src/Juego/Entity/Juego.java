@@ -8,6 +8,29 @@ import Juego.Factory.EnemigoFactory;
 public class Juego {
 
 
+    private String nombre;
+
+    private Integer version;
+
+    public Juego() {
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
+
 
     public Enemigo generarEnemigos(Integer nivel) throws NivelInvalidoException {
     if(nivel == null){ throw new NullPointerException();}

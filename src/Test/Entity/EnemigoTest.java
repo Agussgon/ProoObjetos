@@ -5,6 +5,7 @@ import Juego.Entity.EnemigoDificil;
 import org.junit.jupiter.api.*;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -37,6 +38,23 @@ class EnemigoTest {
         assertTrue(enemigo.getPuntos()== 200, "¿Inicia con 200 puntos?");
 
     }
+
+
+    // otra validación
+    @Test
+    public void testDivideByZero() {
+        assertThrows(ArithmeticException.class, () -> {
+            int result = 5 / 0; // Esto debería lanzar una ArithmeticException
+        });
+    }
+
+      /*  @Test
+        void setPuntosInvalidos() {
+
+            assertThrows(IllegalArgumentException.class , enemigo.setPuntos(0));
+        }*/
+
+
 
     @AfterEach
        void cierreTest(){

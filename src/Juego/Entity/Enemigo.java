@@ -37,7 +37,8 @@ public abstract class Enemigo {
     }
 
     public void setPuntos(Integer puntos) {
-        this.puntos = puntos;
+        if(puntos <= 0){ throw new IllegalArgumentException(); }
+       else{ this.puntos = puntos;}
     }
 
     public Double getPorcentajeVida() {
