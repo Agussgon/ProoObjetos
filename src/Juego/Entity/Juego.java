@@ -5,12 +5,17 @@ import Juego.Factory.EnemigoAleatorioFactory;
 import Juego.Factory.EnemigoDificilFactory;
 import Juego.Factory.EnemigoFactory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Juego {
 
 
     private String nombre;
 
     private Integer version;
+
+    private List <String> listaCreditos= new ArrayList();
 
     public Juego() {
     }

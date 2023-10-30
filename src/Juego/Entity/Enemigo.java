@@ -48,4 +48,19 @@ public abstract class Enemigo {
     public void setPorcentajeVida(Double porcentajeVida) {
         this.porcentajeVida = porcentajeVida;
     }
+
+    public void restarVida(String cuanto){
+
+
+        if (cuanto.equals(null)){ throw new IllegalArgumentException(); }
+        else if(cuanto.equals("poco") || cuanto.equals("poco2") )
+        { this.setPorcentajeVida(this.getPorcentajeVida()-20.0); }
+        else if(cuanto.equals("bastante") )
+        { this.setPorcentajeVida(this.getPorcentajeVida()-40.0); }
+        else if(cuanto.equals("mucho")){
+            this.setPorcentajeVida(this.getPorcentajeVida()-80.0);
+        }
+    }
+
+
 }
